@@ -17,10 +17,12 @@ namespace NimblySDK
 
         public string C { get; set; }
         public string CN { get; set; }
+
+        public string altBaseURL { get; set; } = null;
 #if DEBUG
         private const string apiBaseURL = "http://localhost:53082/";
 #else
-        private const string apiBaseURL = "https://api.nimbly.com.br/";
+        private const string apiBaseURL = "https://nimbly-interfaceapi.azurewebsites.net/";
 #endif
 
         /// <summary>
@@ -47,7 +49,7 @@ namespace NimblySDK
 
                 try
                 {
-                    byte[] retorno = wcCli.DownloadData(apiBaseURL + endpoint + (queryString != null ? "?" + queryString.ToQueryString() : ""));
+                    byte[] retorno = wcCli.DownloadData((altBaseURL ?? apiBaseURL) + endpoint + (queryString != null ? "?" + queryString.ToQueryString() : ""));
                     return new Result()
                     {
                         Content = Encoding.UTF8.GetString(retorno),
@@ -85,7 +87,7 @@ namespace NimblySDK
 
                 try
                 {
-                    byte[] retorno = wcCli.UploadValues(apiBaseURL + endpoint, body);
+                    byte[] retorno = wcCli.UploadValues((altBaseURL ?? apiBaseURL) + endpoint, body);
                     return new Result()
                     {
                         Content = Encoding.UTF8.GetString(retorno),
