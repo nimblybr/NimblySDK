@@ -48,4 +48,5 @@
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="pipelinePreDeployCopyAllFilesToOneFolder" />
 </Project>
