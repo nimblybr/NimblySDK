@@ -31,8 +31,9 @@ namespace NimblySDK
         /// <param name="endpoint">Exemplo: api/ping</param>
         /// <param name="queryString">Especifique os parâmetros que serão enviados no QueryString</param>
         /// <returns></returns>
-        public Result Get(string endpoint, QueryParams queryString = null)
+        public Result Get(string endpoint, QueryParams queryString = null, string sentAltBaseURL = null)
         {
+            altBaseURL = sentAltBaseURL;
             if ((String.IsNullOrWhiteSpace(C)) && (String.IsNullOrWhiteSpace(CN)))
                 return new Result() { ErrorMessage = "Especifique o C ou CN para prosseguir." };
 
@@ -69,8 +70,9 @@ namespace NimblySDK
         /// <param name="endpoint"></param>
         /// <param name="body"></param>
         /// <returns></returns>
-        public Result Post(string endpoint, NameValueCollection body = null)
+        public Result Post(string endpoint, NameValueCollection body = null, string sentAltBaseURL = null)
         {
+            altBaseURL = sentAltBaseURL;
             if ((String.IsNullOrWhiteSpace(C)) && (String.IsNullOrWhiteSpace(CN)))
                 return new Result() { ErrorMessage = "Especifique o C ou CN para prosseguir." };
 
